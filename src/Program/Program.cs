@@ -7,7 +7,7 @@ namespace roleplay
     {
         static void Main(string[] args)
         {
-            Game juego1 = new Game();
+            //Game juego1 = new Game();
 
             Elves Legolas = new Elves("Legolas",0,100,"Flechazo entre ceja y ceja",20);
 
@@ -33,7 +33,7 @@ namespace roleplay
 
             Richard.AddBook(book);
 
-            juego1.AtackWithSpell(Richard,Legolas);
+            //juego1.AtackWithSpell(Richard,Legolas);
 
 
 
