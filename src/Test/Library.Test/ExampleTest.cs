@@ -10,25 +10,25 @@ namespace Test.Library
         [Test]
         public void ElvesTest() 
         {
-            Game TestGame = new Game();
+            
             Elves LegolasTest = new Elves("TesteoLegolas", 50, 100, "Flechazo Debug", 100);
             Dwarf EnanoTest = new Dwarf("GimliTest", 50, 100, "Mi hacha", 100);
-            TestGame.Atack(LegolasTest, EnanoTest);
+            LegolasTest.Atack(EnanoTest);
             int hpexpected =  50;
             
             Assert.AreEqual(hpexpected, EnanoTest.Hp);
 
-            TestGame.Heal(LegolasTest,EnanoTest);
+            LegolasTest.Heal(EnanoTest);
             hpexpected = 100;
 
             Assert.AreEqual(hpexpected, EnanoTest.Hp);
 
-            TestGame.Atack(EnanoTest, LegolasTest);
+            EnanoTest.Atack(LegolasTest);
             hpexpected =  50;
             
             Assert.AreEqual(hpexpected, LegolasTest.Hp);    
 
-            TestGame.Heal(LegolasTest,LegolasTest);
+            LegolasTest.Heal(LegolasTest);
             hpexpected = 100;
 
             Assert.AreEqual(hpexpected, LegolasTest.Hp);
@@ -36,20 +36,19 @@ namespace Test.Library
         }
         public void pruebaenanos()
         {
-            Game TestGame = new Game();
+
             Dwarf Panza = new Dwarf("Fuerteychiquito",100,150,"patadamagica",170);
             Dwarf Peleador = new Dwarf("Elvaliente",150,180,"volar",170);
-            TestGame.Atack(Panza, Peleador);
+            Panza.Atack(Peleador);
             int hpexpected =  130;
             Assert.AreEqual(hpexpected, Peleador.Hp);
-            TestGame.Atack(Peleador, Peleador);
+            Peleador.Atack(Peleador);
             var hpvolar =  70;
             Assert.AreEqual(hpvolar, Panza.Hp);
             //testeo de la clase enanos, verificación de que pueden atacar y recibir ataques los personajes
         }
         public void pruebaitems()
         {
-            Game TestGame = new Game();
 
             Item Testitem = new Item("test1",100,100,100);
             Elves TestElves = new Elves("testeralto",0,0,"testing power",0);
@@ -100,7 +99,7 @@ namespace Test.Library
         }
         public void WizardTest()
         {
-            Game TestGame = new Game();
+            
             Wizard MagoTest = new Wizard("Harry Potter", 100, 100, "Wingardium Leviosa", 20);
             Dwarf EnanoTest = new Dwarf("Enano oscuro", 0, 100, "Fieraso", 100);
             Dwarf EnanoTest2 = new Dwarf("Enano oscuro", 0, 100, "Fieraso", 100);
@@ -112,11 +111,11 @@ namespace Test.Library
             book.AddSpell(spell2); 
             book.AddSpell(spell3); 
 
-            TestGame.Atack(MagoTest,EnanoTest);
+            MagoTest.Atack(EnanoTest);
             int hpexpected = 80;
             Assert.AreEqual(hpexpected, EnanoTest.Hp);
 
-            TestGame.AtackWithSpell(MagoTest, EnanoTest2);
+            MagoTest.AtackWithSpell(EnanoTest2);
             int hpexpected2= 50;
             Assert.AreEqual(hpexpected2, EnanoTest.Hp);
             // Testeo de la clase Wizard junto con los ataques basicos y ataques con el libro de hechizos

@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace roleplay
 {
-    public class Book
+    public class Book 
     {
-        public string Name{get;}
+        public string Name{get;set;}
         public ArrayList Spells = new ArrayList(); 
 
        public void AddSpell(Spell spell) //Se le agrega hechizos al libro

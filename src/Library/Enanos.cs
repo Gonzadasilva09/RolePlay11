@@ -3,15 +3,15 @@ using System.Collections;
 
 namespace roleplay
 {
-    public class Dwarf
+    public class Dwarf : IPersonaje
     {
-        public string Name{get;}
+        public string Name{get;set;}
         public int Defense{get;set;}
         public int Hp{get;set;}
-        public string Power{get;}
+        public string Power{get;set;}
         public int Damage{get;set;}
-        bool Pocket=false;
-        public int HpMax{get;}
+        public bool Pocket{get; set;}
+        public int HpMax{get;set;}
 
         public Dwarf (string name, int defense, int hpmax, string power, int damage)// Constructor para los enanos
         {
@@ -21,6 +21,7 @@ namespace roleplay
             this.Power = power;
             this.Damage = damage;
             this.HpMax = hpmax;
+            this.Pocket = false;
 
             Console.WriteLine("Se ha creado el Enano!");
         }
@@ -61,6 +62,29 @@ namespace roleplay
             else
             {
                 Console.WriteLine("El personaje no tiene un item equipado");
+            }
+        }
+
+        public void Atack(IPersonaje personaje) // Decidimos que era mas facil hacer una clase con toda la logica del juego, esta tiene la responsabilidad de cambiar los datos de los objetos de tipo personaje basado en las acciones que toman, y colabora con ellas para saber y modificar sus valores
+        {
+            Console.WriteLine($"{this.Name} a realizado su ataque {this.Power}");
+
+            if(personaje.Defense < this.Damage)
+            {
+                int damage = this.Damage - personaje.Defense;
+                personaje.Hp = personaje.Hp - damage ;
+                Console.WriteLine($"{personaje.Name} a recibido {damage} daño...");
+
+                if(personaje.Hp > 0){
+
+                    Console.WriteLine($"{personaje.Name} tiene {personaje.Hp} vida restante");
+                }else{
+                    Console.WriteLine($"{personaje.Name} a muerto a mano de {this.Name}");
+                }
+            }
+            else
+            {
+            Console.WriteLine($"{personaje.Name} no a recibido daño ...");
             }
         }
     }

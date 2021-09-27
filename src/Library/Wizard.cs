@@ -2,14 +2,14 @@ using System;
 
 namespace roleplay
 {
-    public class Wizard{
-        
+    public class Wizard : IPersonaje
+    { 
         public string Name{get;set;}
         public int Defense{get;set;}
         public int Hp{get;set;}
         public string Power{get;set;}
         public int Damage{get;set;}
-        bool Pocket=false;
+        public bool Pocket{get; set;}
         public int HpMax{get;set;}
         public Book Book{get;set;}
         
@@ -21,6 +21,7 @@ namespace roleplay
             this.Power = power;
             this.Damage = damage;
             this.HpMax = hpmax;
+            this.Pocket = false;
 
            Console.WriteLine($"Se a creado el hechicero {this.Name}");
         }
@@ -72,6 +73,61 @@ namespace roleplay
 
             }else{
                 Console.WriteLine("Ya tiene un libro equipado");
+            }
+        }
+
+        public void Atack(IPersonaje personaje) // Decidimos que era mas facil hacer una clase con toda la logica del juego, esta tiene la responsabilidad de cambiar los datos de los objetos de tipo personaje basado en las acciones que toman, y colabora con ellas para saber y modificar sus valores
+        {
+            Console.WriteLine($"{this.Name} a realizado su ataque {this.Power}");
+
+            if(personaje.Defense < this.Damage)
+            {
+                int damage = this.Damage - personaje.Defense;
+                personaje.Hp = personaje.Hp - damage ;
+                Console.WriteLine($"{personaje.Name} a recibido {damage} daño...");
+
+                if(personaje.Hp > 0){
+
+                    Console.WriteLine($"{personaje.Name} tiene {personaje.Hp} vida restante");
+                }else{
+                    Console.WriteLine($"{personaje.Name} a muerto a mano de {this.Name}");
+                }
+            }
+            else
+            {
+            Console.WriteLine($"{personaje.Name} no a recibido daño ...");
+            }
+        }
+
+        public void AtackWithSpell(IPersonaje personaje)// Los wizards pueden tomar una accion especial, atacar con Spells contenidos por su libro de hechizos
+        {
+            Console.WriteLine($"{this.Name} abrio el libro {this.Book.Name}");
+            int contador = 0;
+            Console.WriteLine($"Cual hechizo le gustaria realizar...?");
+            foreach(Spell spell in this.Book.Spells){
+                Console.WriteLine($"{contador} - {spell.Name}");
+                contador+=1;
+            }
+            int num = Convert.ToInt32(Console.ReadLine());
+            dynamic hechizo = this.Book.Spells[num];
+            int daño = hechizo.Power;
+
+            if(personaje.Defense < daño)
+            {
+                int daño2 = daño - personaje.Defense;
+                personaje.Hp = personaje.Hp - daño ;
+                Console.WriteLine($"{personaje.Name} a recibido {daño} daño...");
+
+                if(personaje.Hp > 0){
+
+                    Console.WriteLine($"{personaje.Name} tiene {personaje.Hp} vida restante");
+                }else{
+                    Console.WriteLine($"{personaje.Name} a muerto a mano de {this.Name}");
+                }
+            }
+            else
+            {
+            Console.WriteLine($"{personaje.Name} no a recibido daño ...");
             }
         }
 

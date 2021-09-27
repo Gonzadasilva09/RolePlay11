@@ -1,33 +1,10 @@
-using System;
+/*using System;
 using System.Collections;
 
 
 namespace roleplay
 {
     public class Game{
-
-        public void Atack(dynamic personaje, dynamic personaje2) // Decidimos que era mas facil hacer una clase con toda la logica del juego, esta tiene la responsabilidad de cambiar los datos de los objetos de tipo personaje basado en las acciones que toman, y colabora con ellas para saber y modificar sus valores
-        {
-            Console.WriteLine($"{personaje.Name} a realizado su ataque {personaje.Power}");
-
-            if(personaje2.Defense < personaje.Damage)
-            {
-                int damage = personaje.Damage - personaje2.Defense;
-                personaje2.Hp = personaje2.Hp - damage ;
-                Console.WriteLine($"{personaje2.Name} a recibido {damage} daño...");
-
-                if(personaje2.Hp > 0){
-
-                    Console.WriteLine($"{personaje2.Name} tiene {personaje2.Hp} vida restante");
-                }else{
-                    Console.WriteLine($"{personaje2.Name} a muerto a mano de {personaje.Name}");
-                }
-            }
-            else
-            {
-            Console.WriteLine($"{personaje2.Name} no a recibido daño ...");
-            }
-        }
 
         public void Heal(Elves personaje, dynamic personaje2)// En este caso decidimos que solamente los elfos tendrian la habilidad de curar, pero pueden curar a cualquier otro personaje
         {
@@ -82,3 +59,4 @@ namespace roleplay
     }
 
 }
+*/
